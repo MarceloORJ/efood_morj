@@ -1,35 +1,32 @@
 import styled from 'styled-components'
 
-import { colors } from '../../styles'
+import bannerImg from '../../assets/images/Vector.png'
+import { breakpoints } from '../../styles'
 
-export const Hero = styled.header`
-  background-color: ${colors.rose};
-  height: 384px;
-`
-export const Imagem = styled.div`
-  width: 100%;
-  height: 385px;
-  top: -24px;
-`
-
-export const Container = styled.div`
-  margin: 0px auto;
-  max-width: 540px;
-`
-
-export const Logo = styled.a`
-  max-width: 125px;
+export const HeaderContainer = styled.div`
   display: flex;
-  margin: 0px auto;
-  padding-top: 64px;
+  background-image: url(${bannerImg});
+  background-size: cotain;
+
+  .container {
+    height: 384px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    padding: 40px 0;
+  }
 `
 
-export const Title = styled.h1`
+export const Titulo = styled.h1`
+  max-width: 540px;
+  font-weight: bold;
+  width: 100%;
+  margin: auto;
   font-size: 36px;
-  color: ${colors.red};
-  height: 84px;
-  font-weight: 900px;
-  text-align: center;
-  margin-top: 138px;
-  margin-bottom: 40px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 24px;
+    padding: 0 20px;
+  }
 `

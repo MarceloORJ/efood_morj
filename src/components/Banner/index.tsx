@@ -1,14 +1,31 @@
-import { HeroContainer, Title, Categoria } from './styles'
+import { useParams } from 'react-router-dom'
 
-const Banner = () => (
-  <>
-    <HeroContainer>
+import { Imagem, Text, Titulo, Container } from './styles'
+
+import { useGetBannerQuery } from '../../services/api'
+
+type BannerParams = {
+  id: string
+}
+
+const Banner = () => {
+  const { id } = useParams() as BannerParams
+  const { data: restaurant } = useGetBannerQuery(id)
+
+  return (
+    <Imagem style={{ backgroundImage: `url(${restaurant?.capa})` }}>
       <div className="container">
-        <Categoria>italiana</Categoria>
-        <Title>La dolce</Title>
+        <Container>
+          <div>
+            <Text>{restaurant?.tipo}</Text>
+          </div>
+          <div>
+            <Titulo>{restaurant?.titulo}</Titulo>
+          </div>
+        </Container>
       </div>
-    </HeroContainer>
-  </>
-)
+    </Imagem>
+  )
+}
 
 export default Banner

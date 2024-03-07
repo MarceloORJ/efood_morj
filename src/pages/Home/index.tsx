@@ -1,69 +1,116 @@
-import ProductsList from '../../components/ProductsList'
-import hioki from '../../assets/images/hioki.png'
-import dolce from '../../assets/images/Dolce.png'
-import Food from '../../models/Food'
+//import { useEffect, useState } from 'react'
 
-export const restaurants: Food[] = [
-  {
-    id: 1,
-    title: 'Hioki Sushi',
-    desciption:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    image: hioki,
-    info: ['Destaque da semana', 'Japonesa'],
-    rate: 4.9
-  },
-  {
-    id: 2,
-    title: 'La Dolce Vita Trattoria',
-    desciption:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: dolce,
-    info: ['Italiana'],
-    rate: 4.6
-  },
-  {
-    id: 3,
-    title: 'Hioki Sushi ',
-    desciption:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    image: hioki,
-    info: ['Japonesa'],
-    rate: 4.9
-  },
-  {
-    id: 4,
-    title: 'Hioki Sushi ',
-    desciption:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    image: hioki,
-    info: ['Japonesa'],
-    rate: 4.9
-  },
-  {
-    id: 5,
-    title: 'Hioki Sushi ',
-    desciption:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    image: hioki,
-    info: ['Japonesa'],
-    rate: 4.9
-  },
-  {
-    id: 6,
-    title: 'Hioki Sushi ',
-    desciption:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    image: hioki,
-    info: ['Japonesa'],
-    rate: 4.9
+import Header from '../../components/Header'
+import ListaRestaurantes from '../../components/ListaRestaurantes'
+import Loader from '../../components/Loader'
+import { useGetRestaurantsQuery } from '../../services/api'
+
+//import ModeloRestaurante from '../../models/Restaurante'
+//import prato1 from '../../assets/images/imagem.png'
+//import estrela from '../../assets/images/estrela.png'
+
+// const comercios: ModeloRestaurante[] = [
+//   {
+//     id: 1,
+//     infos: ['Destaque da semana', 'Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.9',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     // eslint-disable-next-line react/jsx-key
+//     button: 'Saiba mais'
+//   },
+//   {
+//     id: 2,
+//     infos: ['Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.6',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     button: 'Saiba mais'
+//   },
+//   {
+//     id: 3,
+//     infos: ['Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.6',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     button: 'Saiba mais'
+//   },
+//   {
+//     id: 4,
+//     infos: ['Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.6',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     button: 'Saiba mais'
+//   },
+//   {
+//     id: 5,
+//     infos: ['Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.6',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     button: 'Saiba mais'
+//   },
+//   {
+//     id: 6,
+//     infos: ['Japonesa'],
+//     image: prato1,
+//     title: 'Hioki Sushi',
+//     number: '4.6',
+//     star: estrela,
+//     description:
+//       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nihil suscipit nam libero, ipsum sit saepe inventore veritatis quis hic, assumenda molestias reprehenderit officiis natus earum cupiditate perspiciatis excepturi. Mollitia?',
+//     button: 'Saiba mais'
+//   }
+// ]
+
+export type Restaurant = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  button: string
+  cardapio: {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
   }
-]
+}
 
-const Home = () => (
-  <>
-    <ProductsList foods={restaurants} background="white" />
-  </>
-)
+const Home = () => {
+  const { data: restaurants } = useGetRestaurantsQuery()
+
+  if (restaurants) {
+    return (
+      <>
+        <Header />
+        <ListaRestaurantes comercios={restaurants} />
+      </>
+    )
+  }
+
+  return <Loader />
+}
 
 export default Home

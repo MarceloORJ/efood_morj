@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { cores } from '../../styles'
 
 export const ProductsContainer = styled.div`
-  color: ${colors.red};
+  color: ${cores.coral};
   display: flex;
   margin-bottom: 48px;
 `
 
 export const Card = styled.div`
-  background-color: ${colors.white};
+  background-color: ${cores.branco};
   position: relative;
 `
 
